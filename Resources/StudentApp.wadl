@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:application xmlns:ns0="http://wadl.dev.java.net/2009/02" name="StudentApp">
+    <ns0:resources name="StudentDetailsService" base="http://localhost:8080">
+        <ns0:resource id="StudentResource" path="StudentDetails">
+            <ns0:doc/>
+            <ns0:method id="StudentDetails" name="POST">
+                <ns0:doc/>
+            </ns0:method>
+        </ns0:resource>
+    </ns0:resources>
+</ns0:application>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/RestExample/Resources/Schema/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003">
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/schemas/RestExample/Resources/Schema/Schema.xsd" schemaLocation="/Resources/Schema/StudentDetails.xsd"/>
+    <pd:name>Processes/StudentDetails.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx:Request"/>
+    <pd:startX>150</pd:startX>
+    <pd:startY>64</pd:startY>
+    <pd:returnBindings>
+        <xsl:copy-of select="$StudentDetails/pfx:Response"/>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx:Response"/>
+    <pd:endX>450</pd:endX>
+    <pd:endY>64</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1590521355533</pd:targetNamespace>
+    <pd:activity name="StudentDetails">
+        <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
+        <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
+        <pd:x>302</pd:x>
+        <pd:y>66</pd:y>
+        <config>
+            <element ref="pfx:Response"/>
+        </config>
+        <pd:inputBindings>
+            <xsl:choose>
+                <xsl:when test="$Start/pfx:Request/pfx:RollNo.=1">
+                    <pfx:Response>
+                        <pfx:Name>
+                            <xsl:value-of select="&quot;André&quot;"/>
+                        </pfx:Name>
+                        <pfx:College>
+                            <xsl:value-of select="&quot;Tábua&quot;"/>
+                        </pfx:College>
+                        <pfx:Branch>
+                            <xsl:value-of select="&quot;EEE&quot;"/>
+                        </pfx:Branch>
+                    </pfx:Response>
+                </xsl:when>
+                <xsl:when test="$Start/pfx:Request/pfx:RollNo.=2">
+                    <pfx:Response>
+                        <pfx:Name>
+                            <xsl:value-of select="&quot;Ricardo&quot;"/>
+                        </pfx:Name>
+                        <pfx:College>
+                            <xsl:value-of select="&quot;Coimbra&quot;"/>
+                        </pfx:College>
+                        <pfx:Branch>
+                            <xsl:value-of select="&quot;ECE&quot;"/>
+                        </pfx:Branch>
+                    </pfx:Response>
+                </xsl:when>
+                <xsl:otherwise>
+                    <pfx:Response>
+                        <pfx:Name>
+                            <xsl:value-of select="&quot;Unknow&quot;"/>
+                        </pfx:Name>
+                        <pfx:College>
+                            <xsl:value-of select="&quot;Unknow&quot;"/>
+                        </pfx:College>
+                        <pfx:Branch>
+                            <xsl:value-of select="&quot;Unknow&quot;"/>
+                        </pfx:Branch>
+                    </pfx:Response>
+                </xsl:otherwise>
+            </xsl:choose>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>StudentDetails</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>StudentDetails</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>
